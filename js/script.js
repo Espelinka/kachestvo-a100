@@ -1,8 +1,9 @@
 function showSection(id) {
   // Скрываем главное меню
-  document.getElementById('main-screen').classList.add('hidden');
+  const mainScreen = document.getElementById('main-screen');
+  mainScreen.classList.add('hidden');
 
-  // Скрываем все разделы
+  // Скрываем все другие разделы
   document.querySelectorAll('.section').forEach(el => el.classList.add('hidden'));
 
   // Показываем нужный раздел
@@ -18,7 +19,9 @@ function showMain() {
   document.querySelectorAll('.section').forEach(el => el.classList.add('hidden'));
 
   // Показываем главное меню
-  document.getElementById('main-screen').classList.remove('hidden');
+  const mainScreen = document.getElementById('main-screen');
+  mainScreen.classList.remove('hidden');
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -26,17 +29,17 @@ function showImage(src) {
   const modal = document.getElementById("imageModal");
   const img = document.getElementById("modalImage");
 
-  img.src = src;             // Устанавливаем нужное изображение
-  modal.style.display = "block"; // Показываем модальное окно
-  setTimeout(() => modal.classList.add("show"), 10); // Плавно появляется
+  img.src = src;
+  modal.style.display = "block";
+  setTimeout(() => modal.classList.add("show"), 10);
 }
 
 function closeModal() {
   const modal = document.getElementById("imageModal");
-  modal.classList.remove("show"); // Плавно исчезает
-  setTimeout(() => { modal.style.display = "none"; }, 300); // Прячем окно
+  modal.classList.remove("show");
+  setTimeout(() => { modal.style.display = "none"; }, 300);
 }
 
 function openPdf(url) {
-  window.open(url, '_blank'); // Открываем PDF в новой вкладке
+  window.open(url, '_blank');
 }
