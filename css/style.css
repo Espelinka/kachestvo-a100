@@ -151,3 +151,7 @@ footer {
   }
   h1 { font-size: 1.4em; }
 }
+.hidden {
+  display: none !important;
+}
+
