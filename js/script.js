@@ -41,21 +41,53 @@ function closeModal() {
 }
 
 function openPdf(url) {
-  // Открывает PDF в новой вкладке браузера
-  const newWindow = window.open();
-  newWindow.document.write(`
-    <html>
-      <head>
-        <title>Документ</title>
-        <style>
-          body, html { margin: 0; height: 100%; background: #333; }
-          iframe { width: 100%; height: 100%; border: none; }
-        </style>
-      </head>
-      <body>
-        <iframe src="${url}" allow="fullscreen"></iframe>
-      </body>
+  // Создаём новую вкладку
+  const newTab = window.open("", "_blank");
+
+  // Если браузер заблокировал всплывающее окно
+  if (!newTab) {
+    alert("Разрешите всплывающие окна, чтобы открыть документ");
+    return;
+  }
+
+  // Вставляем HTML прямо в новую вкладку
+  newTab.document.write(`
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+      <meta charset="UTF-8">
+      <title>Просмотр документа</title>
+      <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+          background: #2e5939;
+          color: white;
+          font-family: sans-serif;
+          display: flex;
+          flex-direction: column;
+        }
+        header {
+          padding: 10px;
+          background: #1b3a26;
+          text-align: center;
+          font-size: 1.1em;
+        }
+        iframe {
+          flex: 1;
+          width: 100%;
+          border: none;
+          background: #444;
+        }
+      </style>
+    </head>
+    <body>
+      <header>Просмотр PDF-документа</header>
+      <iframe src="${url}" allowfullscreen></iframe>
+    </body>
     </html>
   `);
 }
+
+
 
