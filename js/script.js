@@ -41,5 +41,21 @@ function closeModal() {
 }
 
 function openPdf(url) {
-  window.open(url, '_blank');
+  // Открывает PDF в новой вкладке браузера
+  const newWindow = window.open();
+  newWindow.document.write(`
+    <html>
+      <head>
+        <title>Документ</title>
+        <style>
+          body, html { margin: 0; height: 100%; background: #333; }
+          iframe { width: 100%; height: 100%; border: none; }
+        </style>
+      </head>
+      <body>
+        <iframe src="${url}" allow="fullscreen"></iframe>
+      </body>
+    </html>
+  `);
 }
+
